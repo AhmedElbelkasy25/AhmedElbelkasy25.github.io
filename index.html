@@ -1,233 +1,799 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ahmed Elbelkasy — Full-Stack .NET Developer</title>
-<meta name="description" content="Ahmed Elbelkasy, .NET developer: ASP.NET Core, Entity Framework Core, SQL Server, SignalR and Clean Architecture.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0e1116;--panel:#151a22;--line:#242b37;--text:#e6e8ee;--muted:#98a0b3;--accent:#8b9bff;--ok:#4ade80;
---sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'JetBrains Mono',ui-monospace,Consolas,monospace;color-scheme:dark}
-*{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth;scroll-padding-top:70px}
-body{background:var(--bg);color:var(--text);font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-nav{position:sticky;top:0;z-index:10;background:rgba(14,17,22,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:58px;gap:16px}
-.logo{font:500 15px var(--mono)}.logo b{color:var(--accent);font-weight:500}
-nav ul{display:flex;gap:22px;list-style:none;padding:0;font-size:14px;color:var(--muted);overflow-x:auto}
-nav ul a:hover{color:var(--text)}
-.btn{display:inline-block;padding:9px 16px;border:1px solid var(--line);border-radius:6px;font-size:14px;font-weight:500;transition:border-color .2s,background .2s}
-.btn:hover{border-color:var(--accent)}
-.btn.primary{background:var(--accent);border-color:var(--accent);color:#0e1116}
-.btn.primary:hover{background:#a3b0ff}
-.mono{font-family:var(--mono)}
-.hero{padding:72px 0 64px;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
-.prompt{font:14px var(--mono);color:var(--accent);margin-bottom:12px}
-h1{font-size:clamp(38px,6vw,60px);line-height:1.08;letter-spacing:-.02em;font-weight:700}
-.role{font:15px var(--mono);color:var(--muted);margin:14px 0 20px}
-.lead{color:var(--muted);max-width:56ch}
-.cta{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 22px}
-.meta{font:13px var(--mono);color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 20px}
-.widget{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
-.whead{display:flex;justify-content:space-between;padding:10px 16px;border-bottom:1px solid var(--line);font:13px var(--mono);color:var(--muted)}
-.whead i{color:var(--ok);font-style:normal}
-.widget svg{display:block;width:100%;height:auto;padding:12px}
-.ring{fill:var(--c);fill-opacity:.07;stroke:var(--c);stroke-width:1.5;transition:fill-opacity .2s}
-.ring.on{fill-opacity:.28}
-svg text{font:500 11px var(--mono);fill:var(--text)}
-svg .dim{fill:var(--muted);font-size:9.5px}
-.legend{list-style:none;padding:0 16px 14px;display:flex;flex-wrap:wrap;gap:6px 14px;font:12px var(--mono);color:var(--muted)}
-.legend li{cursor:default;display:flex;align-items:center;gap:6px}
-.legend li::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--c)}
-.legend li:hover{color:var(--text)}
-section{padding:72px 0;border-top:1px solid var(--line)}
-.tag{font:13px var(--mono);color:var(--accent);margin-bottom:8px}
-h2{font-size:clamp(28px,4vw,38px);letter-spacing:-.015em;line-height:1.15}
-.sub{color:var(--muted);margin:10px 0 36px;max-width:60ch}
-.job{display:grid;grid-template-columns:220px 1fr;gap:32px;padding:26px 0;border-top:1px solid var(--line)}
-.job:first-of-type{border-top:0}
-.job .when{font:13px var(--mono);color:var(--muted)}
-.job h3{font-size:19px}.job .org{color:var(--accent);font-size:15px;margin-bottom:8px}
-ul.pts{padding-left:18px;color:var(--muted)}ul.pts li{margin:5px 0}
-.proj{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:28px;margin-bottom:22px}
-.proj .top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font:13px var(--mono);color:var(--muted);margin-bottom:6px}
-.proj h3{font-size:23px;margin-bottom:8px}
-.proj>p{color:var(--muted);max-width:68ch}
-.flow{font:13px var(--mono);color:var(--accent);margin:18px 0;padding:10px 14px;background:rgba(139,155,255,.07);border-radius:6px;overflow-x:auto;white-space:nowrap}
-.flow span{color:var(--muted)}
-.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px 28px;margin:20px 0}
-.cols h4{font-size:15px;margin-bottom:2px}.cols p{font-size:14.5px;color:var(--muted)}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
-.chips span{font:12.5px var(--mono);padding:4px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
-.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
-.skill{border:1px solid var(--line);border-radius:10px;padding:20px}
-.skill .path{font:13px var(--mono);color:var(--accent)}.skill h3{font-size:17px;margin:2px 0 4px}
-.contact{text-align:left}
-.contact .cta{margin-bottom:0}
-footer{border-top:1px solid var(--line);padding:26px 0;font:13px var(--mono);color:var(--muted)}
-footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
-footer a:hover{color:var(--text)}
-@media(max-width:860px){.hero{grid-template-columns:1fr;padding-top:48px}.job{grid-template-columns:1fr;gap:6px}.logo{display:none}nav .btn{display:none}}
-@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
-</style>
-</head>
-<body>
-<nav><div class="wrap">
-  <a class="logo" href="#top">ahmed<b>.</b>elbelkasy</a>
-  <ul>
-    <li><a href="#experience">Experience</a></li><li><a href="#projects">Projects</a></li>
-    <li><a href="#skills">Skills</a></li><li><a href="#contact">Contact</a></li>
-  </ul>
-  <a class="btn" href="AhmedElbelkasyCV.pdf" download>Download CV</a>
-</div></nav>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ahmed Elbelkasy — Full-Stack .NET Developer</title>
+    <meta
+      name="description"
+      content="Ahmed Elbelkasy, .NET developer: ASP.NET Core, Entity Framework Core, SQL Server, SignalR and Clean Architecture."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0e1116;
+        --panel: #151a22;
+        --line: #242b37;
+        --text: #e6e8ee;
+        --muted: #98a0b3;
+        --accent: #8b9bff;
+        --ok: #4ade80;
+        --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+        --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+        color-scheme: dark;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 70px;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font: 16px/1.65 var(--sans);
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      a:focus-visible,
+      button:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+      .wrap {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: rgba(14, 17, 22, 0.88);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      nav .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 58px;
+        gap: 16px;
+      }
+      .logo {
+        font: 500 15px var(--mono);
+      }
+      .logo b {
+        color: var(--accent);
+        font-weight: 500;
+      }
+      nav ul {
+        display: flex;
+        gap: 22px;
+        list-style: none;
+        padding: 0;
+        font-size: 14px;
+        color: var(--muted);
+        overflow-x: auto;
+      }
+      nav ul a:hover {
+        color: var(--text);
+      }
+      .btn {
+        display: inline-block;
+        padding: 9px 16px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+      }
+      .btn:hover {
+        border-color: var(--accent);
+      }
+      .btn.primary {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #0e1116;
+      }
+      .btn.primary:hover {
+        background: #a3b0ff;
+      }
+      .mono {
+        font-family: var(--mono);
+      }
+      .hero {
+        padding: 72px 0 64px;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 48px;
+        align-items: center;
+      }
+      .prompt {
+        font: 14px var(--mono);
+        color: var(--accent);
+        margin-bottom: 12px;
+      }
+      h1 {
+        font-size: clamp(38px, 6vw, 60px);
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+        font-weight: 700;
+      }
+      .role {
+        font: 15px var(--mono);
+        color: var(--muted);
+        margin: 14px 0 20px;
+      }
+      .lead {
+        color: var(--muted);
+        max-width: 56ch;
+      }
+      .cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 28px 0 22px;
+      }
+      .meta {
+        font: 13px var(--mono);
+        color: var(--muted);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 20px;
+      }
+      .widget {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .whead {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 16px;
+        border-bottom: 1px solid var(--line);
+        font: 13px var(--mono);
+        color: var(--muted);
+      }
+      .whead i {
+        color: var(--ok);
+        font-style: normal;
+      }
+      .widget svg {
+        display: block;
+        width: 100%;
+        height: auto;
+        padding: 12px;
+      }
+      .ring {
+        fill: var(--c);
+        fill-opacity: 0.07;
+        stroke: var(--c);
+        stroke-width: 1.5;
+        transition: fill-opacity 0.2s;
+      }
+      .ring.on {
+        fill-opacity: 0.28;
+      }
+      svg text {
+        font: 500 11px var(--mono);
+        fill: var(--text);
+      }
+      svg .dim {
+        fill: var(--muted);
+        font-size: 9.5px;
+      }
+      .legend {
+        list-style: none;
+        padding: 0 16px 14px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 14px;
+        font: 12px var(--mono);
+        color: var(--muted);
+      }
+      .legend li {
+        cursor: default;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .legend li::before {
+        content: "";
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--c);
+      }
+      .legend li:hover {
+        color: var(--text);
+      }
+      section {
+        padding: 72px 0;
+        border-top: 1px solid var(--line);
+      }
+      .tag {
+        font: 13px var(--mono);
+        color: var(--accent);
+        margin-bottom: 8px;
+      }
+      h2 {
+        font-size: clamp(28px, 4vw, 38px);
+        letter-spacing: -0.015em;
+        line-height: 1.15;
+      }
+      .sub {
+        color: var(--muted);
+        margin: 10px 0 36px;
+        max-width: 60ch;
+      }
+      .job {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        gap: 32px;
+        padding: 26px 0;
+        border-top: 1px solid var(--line);
+      }
+      .job:first-of-type {
+        border-top: 0;
+      }
+      .job .when {
+        font: 13px var(--mono);
+        color: var(--muted);
+      }
+      .job h3 {
+        font-size: 19px;
+      }
+      .job .org {
+        color: var(--accent);
+        font-size: 15px;
+        margin-bottom: 8px;
+      }
+      ul.pts {
+        padding-left: 18px;
+        color: var(--muted);
+      }
+      ul.pts li {
+        margin: 5px 0;
+      }
+      .proj {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 28px;
+        margin-bottom: 22px;
+      }
+      .proj .top {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        font: 13px var(--mono);
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+      .proj h3 {
+        font-size: 23px;
+        margin-bottom: 8px;
+      }
+      .proj > p {
+        color: var(--muted);
+        max-width: 68ch;
+      }
+      .flow {
+        font: 13px var(--mono);
+        color: var(--accent);
+        margin: 18px 0;
+        padding: 10px 14px;
+        background: rgba(139, 155, 255, 0.07);
+        border-radius: 6px;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+      .flow span {
+        color: var(--muted);
+      }
+      .cols {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 14px 28px;
+        margin: 20px 0;
+      }
+      .cols h4 {
+        font-size: 15px;
+        margin-bottom: 2px;
+      }
+      .cols p {
+        font-size: 14.5px;
+        color: var(--muted);
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 6px;
+      }
+      .chips span {
+        font: 12.5px var(--mono);
+        padding: 4px 10px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        color: var(--muted);
+      }
+      .skills {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 18px;
+      }
+      .skill {
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 20px;
+      }
+      .skill .path {
+        font: 13px var(--mono);
+        color: var(--accent);
+      }
+      .skill h3 {
+        font-size: 17px;
+        margin: 2px 0 4px;
+      }
+      .contact {
+        text-align: left;
+      }
+      .contact .cta {
+        margin-bottom: 0;
+      }
+      footer {
+        border-top: 1px solid var(--line);
+        padding: 26px 0;
+        font: 13px var(--mono);
+        color: var(--muted);
+      }
+      footer .wrap {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      footer a:hover {
+        color: var(--text);
+      }
+      @media (max-width: 860px) {
+        .hero {
+          grid-template-columns: 1fr;
+          padding-top: 48px;
+        }
+        .job {
+          grid-template-columns: 1fr;
+          gap: 6px;
+        }
+        .logo {
+          display: none;
+        }
+        nav .btn {
+          display: none;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="wrap">
+        <a class="logo" href="#top">ahmed<b>.</b>elbelkasy</a>
+        <ul>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a class="btn" href="AhmedElbelkasyCV.pdf" download>Download CV</a>
+      </div>
+    </nav>
 
-<main id="top" class="wrap">
-<header class="hero">
-  <div>
-    <p class="prompt">$ whoami</p>
-    <h1>Ahmed Elbelkasy</h1>
-    <p class="role">Full-Stack .NET Developer · ASP.NET Core · Clean Architecture</p>
-    <p class="lead">I build and deploy web applications and REST APIs with C#, ASP.NET Core, Entity Framework Core and SQL Server, with authentication, real-time features, caching and third-party integrations. My Angular and Bootstrap background helps me design APIs the frontend can actually use.</p>
-    <div class="cta">
-      <a class="btn primary" href="#projects">View projects</a>
-      <a class="btn" href="https://www.linkedin.com/in/ahmedelbelkasy25" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="btn" href="https://github.com/AhmedElbelkasy25" target="_blank" rel="noopener">GitHub</a>
-    </div>
-    <p class="meta"><span>.NET Developer</span><span>Giza, Egypt</span><a href="mailto:AhmedElbelkasy25@gmail.com">AhmedElbelkasy25@gmail.com</a></p>
-  </div>
+    <main id="top" class="wrap">
+      <header class="hero">
+        <div>
+          <p class="prompt">$ whoami</p>
+          <h1>Ahmed Elbelkasy</h1>
+          <p class="role">
+            Full-Stack .NET Developer · ASP.NET Core · Clean Architecture
+          </p>
+          <p class="lead">
+            I build and deploy web applications and REST APIs with C#, ASP.NET
+            Core, Entity Framework Core and SQL Server, with authentication,
+            real-time features, caching and third-party integrations. My Angular
+            and Bootstrap background helps me design APIs the frontend can
+            actually use.
+          </p>
+          <div class="cta">
+            <a class="btn primary" href="#projects">View projects</a>
+            <a
+              class="btn"
+              href="https://www.linkedin.com/in/ahmedelbelkasy25"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn</a
+            >
+            <a
+              class="btn"
+              href="https://github.com/AhmedElbelkasy25"
+              target="_blank"
+              rel="noopener"
+              >GitHub</a
+            >
+          </div>
+          <p class="meta">
+            <span>.NET Developer</span><span>Giza, Egypt</span
+            ><a href="mailto:AhmedElbelkasy25@gmail.com"
+              >AhmedElbelkasy25@gmail.com</a
+            >
+          </p>
+        </div>
 
-  <aside class="widget" aria-label="Clean Architecture diagram">
-    <div class="whead"><span>clean.architecture</span><i>● layers</i></div>
-    <svg viewBox="0 0 360 360" role="img" aria-labelledby="dt">
-      <title id="dt">Clean Architecture: Domain at the center, then Application, Infrastructure, and Presentation. Dependencies point inward.</title>
-      <circle class="ring" data-l="p" style="--c:#f59e0b" cx="180" cy="180" r="170"/>
-      <circle class="ring" data-l="i" style="--c:#38bdf8" cx="180" cy="180" r="126"/>
-      <circle class="ring" data-l="a" style="--c:#8b9bff" cx="180" cy="180" r="82"/>
-      <circle class="ring" data-l="d" style="--c:#4ade80" cx="180" cy="180" r="40"/>
-      <text x="180" y="34" text-anchor="middle">Presentation</text>
-      <text class="dim" x="180" y="48" text-anchor="middle">Web API · MVC · SignalR</text>
-      <text x="180" y="78" text-anchor="middle">Infrastructure</text>
-      <text class="dim" x="180" y="92" text-anchor="middle">EF Core · SQL Server · Stripe</text>
-      <text x="180" y="122" text-anchor="middle">Application</text>
-      <text class="dim" x="180" y="136" text-anchor="middle">CQRS · MediatR · DTOs</text>
-      <text x="180" y="184" text-anchor="middle">Domain</text>
-      <text class="dim" x="180" y="198" text-anchor="middle">Entities</text>
-      <g stroke="#98a0b3" stroke-width="1.2" fill="none" stroke-linecap="round">
-        <path d="M300 300 L238 238"/><path d="M238 238 l9 -1 M238 238 l1 9"/>
-      </g>
-      <text class="dim" x="300" y="318" text-anchor="middle">dependencies</text>
-      <text class="dim" x="300" y="330" text-anchor="middle">point inward</text>
-    </svg>
-    <ul class="legend">
-      <li style="--c:#f59e0b" data-l="p">Presentation</li><li style="--c:#38bdf8" data-l="i">Infrastructure</li>
-      <li style="--c:#8b9bff" data-l="a">Application</li><li style="--c:#4ade80" data-l="d">Domain</li>
-    </ul>
-  </aside>
-</header>
+        <aside class="widget" aria-label="Clean Architecture diagram">
+          <div class="whead">
+            <span>clean.architecture</span><i>● layers</i>
+          </div>
+          <svg viewBox="0 0 360 360" role="img" aria-labelledby="dt">
+            <title id="dt">
+              Clean Architecture: Domain at the center, then Application,
+              Infrastructure, and Presentation. Dependencies point inward.
+            </title>
+            <circle
+              class="ring"
+              data-l="p"
+              style="--c: #f59e0b"
+              cx="180"
+              cy="180"
+              r="170"
+            />
+            <circle
+              class="ring"
+              data-l="i"
+              style="--c: #38bdf8"
+              cx="180"
+              cy="180"
+              r="126"
+            />
+            <circle
+              class="ring"
+              data-l="a"
+              style="--c: #8b9bff"
+              cx="180"
+              cy="180"
+              r="82"
+            />
+            <circle
+              class="ring"
+              data-l="d"
+              style="--c: #4ade80"
+              cx="180"
+              cy="180"
+              r="40"
+            />
+            <text x="180" y="34" text-anchor="middle">Presentation</text>
+            <text class="dim" x="180" y="48" text-anchor="middle"></text>
+            <text x="180" y="78" text-anchor="middle">Infrastructure</text>
+            <text class="dim" x="180" y="92" text-anchor="middle"></text>
+            <text x="180" y="122" text-anchor="middle">Application</text>
+            <text class="dim" x="180" y="136" text-anchor="middle"></text>
+            <text x="180" y="184" text-anchor="middle">Domain</text>
+            <text class="dim" x="180" y="198" text-anchor="middle"></text>
+            <g
+              stroke="#98a0b3"
+              stroke-width="1.2"
+              fill="none"
+              stroke-linecap="round"
+            >
+              <path d="M300 300 L238 238" />
+              <path d="M238 238 l9 -1 M238 238 l1 9" />
+            </g>
+            <text class="dim" x="300" y="318" text-anchor="middle">
+              dependencies
+            </text>
+            <text class="dim" x="300" y="330" text-anchor="middle">
+              point inward
+            </text>
+          </svg>
+          <ul class="legend">
+            <li style="--c: #f59e0b" data-l="p">Presentation</li>
+            <li style="--c: #38bdf8" data-l="i">Infrastructure</li>
+            <li style="--c: #8b9bff" data-l="a">Application</li>
+            <li style="--c: #4ade80" data-l="d">Domain</li>
+          </ul>
+        </aside>
+      </header>
 
-<section id="experience">
-  <p class="tag">// experience</p>
-  <h2>Where I've worked</h2>
-  <p class="sub">Training, mentoring and team projects with ASP.NET Core and Agile practices.</p>
-  <div class="job">
-    <div class="when">01/2025<br>Cairo, Egypt</div>
-    <div><h3>DotNet Mentor</h3><p class="org">EraaSoft Company</p>
-      <ul class="pts"><li>Mentored junior trainees on best practices in ASP.NET Core, C# and SOLID principles.</li></ul></div>
-  </div>
-  <div class="job">
-    <div class="when">08/2024 – 01/2025<br>Cairo, Egypt</div>
-    <div><h3>EraaSoft Trainee</h3><p class="org">.NET Backend Development Diploma</p>
-      <ul class="pts">
-        <li>Hands-on training in ASP.NET Core, MVC and Web APIs.</li>
-        <li>Worked in a team following Agile practices.</li>
-        <li>Built full-stack applications with Entity Framework and SQL Server, integrating Stripe, SignalR, localization and an email sender.</li>
-      </ul></div>
-  </div>
-  <div class="job">
-    <div class="when">2018 – 2022<br>6th of October, Egypt</div>
-    <div><h3>B.Sc. Computer Science</h3><p class="org">Culture and Science City · Grade: Very Good</p></div>
-  </div>
-</section>
+      <section id="experience">
+        <p class="tag">// experience</p>
+        <h2>Where I've worked</h2>
+        <p class="sub">
+          Training, mentoring and team projects with ASP.NET Core and Agile
+          practices.
+        </p>
+        <div class="job">
+          <div class="when">01/2025<br />Cairo, Egypt</div>
+          <div>
+            <h3>DotNet Mentor</h3>
+            <p class="org">EraaSoft Company</p>
+            <ul class="pts">
+              <li>
+                Mentored junior trainees on best practices in ASP.NET Core, C#
+                and SOLID principles.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="job">
+          <div class="when">08/2024 – 01/2025<br />Cairo, Egypt</div>
+          <div>
+            <h3>EraaSoft Trainee</h3>
+            <p class="org">.NET Backend Development Diploma</p>
+            <ul class="pts">
+              <li>Hands-on training in ASP.NET Core, MVC and Web APIs.</li>
+              <li>Worked in a team following Agile practices.</li>
+              <li>
+                Built full-stack applications with Entity Framework and SQL
+                Server, integrating Stripe, SignalR, localization and an email
+                sender.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="job">
+          <div class="when">2018 – 2022<br />6th of October, Egypt</div>
+          <div>
+            <h3>B.Sc. Computer Science</h3>
+            <p class="org">Culture and Science City · Grade: Very Good</p>
+          </div>
+        </div>
+      </section>
 
-<section id="projects">
-  <p class="tag">// projects</p>
-  <h2>Selected work</h2>
-  <p class="sub">Two production projects: what each one does and how it is built.</p>
+      <section id="projects">
+        <p class="tag">// projects</p>
+        <h2>Selected work</h2>
+        <p class="sub">
+          Two production projects: what each one does and how it is built.
+        </p>
 
-  <article class="proj">
-    <div class="top"><span>bietak · real estate</span><span>04/2026 – Present</span></div>
-    <h3>Bietak — Real Estate &amp; Student Housing API</h3>
-    <p>A RESTful API for a real estate and student housing platform, built and deployed with ASP.NET Core, C#, Entity Framework Core and SQL Server.</p>
-    <div class="flow">client <span>→</span> rate_limiter <span>→</span> auth(JWT) <span>→</span> controller <span>→</span> cache <span>→</span> spatial_search <span>→</span> sql_server</div>
-    <div class="cols">
-      <div><h4>Location search engine</h4><p>Location-based and polygon-based area queries using NetTopologySuite and SQL Server spatial types.</p></div>
-      <div><h4>Authentication</h4><p>JWT and external providers, with SMS OTP for secure login.</p></div>
-      <div><h4>Performance &amp; protection</h4><p>Response caching and rate limiting keep the API fast and protected from excessive traffic.</p></div>
-      <div><h4>Image validation</h4><p>A validation pipeline checks uploaded images before they are accepted.</p></div>
-    </div>
-    <div class="chips"><span>ASP.NET Core</span><span>C#</span><span>EF Core</span><span>SQL Server</span><span>NetTopologySuite</span><span>JWT</span></div>
-  </article>
+        <article class="proj">
+          <div class="top">
+            <span>bietak · real estate</span><span>04/2026 – Present</span>
+          </div>
+          <h3>Bietak — Real Estate &amp; Student Housing API</h3>
+          <p>
+            A RESTful API for a real estate and student housing platform, built
+            and deployed with ASP.NET Core, C#, Entity Framework Core and SQL
+            Server.
+          </p>
+          <div class="flow">
+            client <span>→</span> rate_limiter <span>→</span> auth(JWT)
+            <span>→</span> controller <span>→</span> cache
+            <span>→</span> spatial_search <span>→</span> sql_server
+          </div>
+          <div class="cols">
+            <div>
+              <h4>Location search engine</h4>
+              <p>
+                Location-based and polygon-based area queries using
+                NetTopologySuite and SQL Server spatial types.
+              </p>
+            </div>
+            <div>
+              <h4>Authentication</h4>
+              <p>JWT and external providers, with SMS OTP for secure login.</p>
+            </div>
+            <div>
+              <h4>Performance &amp; protection</h4>
+              <p>
+                Response caching and rate limiting keep the API fast and
+                protected from excessive traffic.
+              </p>
+            </div>
+            <div>
+              <h4>Image validation</h4>
+              <p>
+                A validation pipeline checks uploaded images before they are
+                accepted.
+              </p>
+            </div>
+          </div>
+          <div class="chips">
+            <span>ASP.NET Core</span><span>C#</span><span>EF Core</span
+            ><span>SQL Server</span><span>NetTopologySuite</span
+            ><span>JWT</span>
+          </div>
+        </article>
 
-  <article class="proj">
-    <div class="top"><span>elclass · lms</span><span>01/2026 – 04/2026</span></div>
-    <h3>ElClass — Learning Management System</h3>
-    <p>A production LMS built with ASP.NET Core MVC, Entity Framework Core and SQL Server for managing courses, instructors, students and learning content.</p>
-    <div class="flow">student <span>→</span> mvc_app <span>→</span> signalr_hub <span>→</span> notifications | chat <span>→</span> zoom_sdk <span>→</span> live_session</div>
-    <div class="cols">
-      <div><h4>Admin dashboard</h4><p>Central control of instructor workflows, student progress tracking and the course lifecycle.</p></div>
-      <div><h4>Real-time notifications</h4><p>Instant updates on course progress, plus in-platform chat and alerts between tutors and learners.</p></div>
-      <div><h4>Virtual classrooms</h4><p>Zoom SDK integration with a scheduling system for lectures and live sessions.</p></div>
-      <div><h4>Localization</h4><p>Arabic and English support, with location-based dynamic content.</p></div>
-    </div>
-    <div class="chips"><span>ASP.NET Core MVC</span><span>EF Core</span><span>SQL Server</span><span>SignalR</span><span>Zoom SDK</span><span>Localization</span></div>
-  </article>
-</section>
+        <article class="proj">
+          <div class="top">
+            <span>elclass · lms</span><span>01/2026 – 04/2026</span>
+          </div>
+          <h3>ElClass — Learning Management System</h3>
+          <p>
+            A production LMS built with ASP.NET Core MVC, Entity Framework Core
+            and SQL Server for managing courses, instructors, students and
+            learning content.
+          </p>
+          <div class="flow">
+            student <span>→</span> mvc_app <span>→</span> signalr_hub
+            <span>→</span> notifications | chat <span>→</span> zoom_sdk
+            <span>→</span> live_session
+          </div>
+          <div class="cols">
+            <div>
+              <h4>Admin dashboard</h4>
+              <p>
+                Central control of instructor workflows, student progress
+                tracking and the course lifecycle.
+              </p>
+            </div>
+            <div>
+              <h4>Real-time notifications</h4>
+              <p>
+                Instant updates on course progress, plus in-platform chat and
+                alerts between tutors and learners.
+              </p>
+            </div>
+            <div>
+              <h4>Virtual classrooms</h4>
+              <p>
+                Zoom SDK integration with a scheduling system for lectures and
+                live sessions.
+              </p>
+            </div>
+            <div>
+              <h4>Localization</h4>
+              <p>
+                Arabic and English support, with location-based dynamic content.
+              </p>
+            </div>
+          </div>
+          <div class="chips">
+            <span>ASP.NET Core MVC</span><span>EF Core</span
+            ><span>SQL Server</span><span>SignalR</span><span>Zoom SDK</span
+            ><span>Localization</span>
+          </div>
+        </article>
+      </section>
 
-<section id="skills">
-  <p class="tag">// skills</p>
-  <h2>Toolkit</h2>
-  <p class="sub">What I use to take a backend feature from idea to a deployed API.</p>
-  <div class="skills">
-    <div class="skill"><div class="path">backend/</div><h3>Backend Development</h3><div class="chips"><span>ASP.NET Core</span><span>MVC</span><span>Web API</span><span>EF Core</span><span>LINQ</span><span>SignalR</span><span>MediatR</span></div></div>
-    <div class="skill"><div class="path">auth/</div><h3>Authentication &amp; Integrations</h3><div class="chips"><span>JWT</span><span>External Auth</span><span>SMS OTP</span><span>Stripe</span><span>Zoom SDK</span></div></div>
-    <div class="skill"><div class="path">architecture/</div><h3>Architecture &amp; Design</h3><div class="chips"><span>Clean Architecture</span><span>SOLID</span><span>Repository Pattern</span><span>Design Patterns</span><span>CQRS</span></div></div>
-    <div class="skill"><div class="path">database/</div><h3>Database</h3><div class="chips"><span>SQL Server</span><span>Entity Framework Core</span></div></div>
-    <div class="skill"><div class="path">frontend/</div><h3>Frontend Development</h3><div class="chips"><span>HTML5</span><span>CSS3</span><span>Bootstrap</span><span>Tailwind</span><span>SASS</span><span>Angular</span></div></div>
-    <div class="skill"><div class="path">tools/</div><h3>Tools</h3><div class="chips"><span>Git</span><span>Visual Studio</span><span>VS Code</span><span>Swagger</span><span>Postman</span><span>Scalar</span></div></div>
-  </div>
-</section>
+      <section id="skills">
+        <p class="tag">// skills</p>
+        <h2>Toolkit</h2>
+        <p class="sub">
+          What I use to take a backend feature from idea to a deployed API.
+        </p>
+        <div class="skills">
+          <div class="skill">
+            <div class="path">backend/</div>
+            <h3>Backend Development</h3>
+            <div class="chips">
+              <span>ASP.NET Core</span><span>MVC</span><span>Web API</span
+              ><span>EF Core</span><span>LINQ</span><span>SignalR</span
+              ><span>MediatR</span>
+            </div>
+          </div>
+          <div class="skill">
+            <div class="path">auth/</div>
+            <h3>Authentication &amp; Integrations</h3>
+            <div class="chips">
+              <span>JWT</span><span>External Auth</span><span>SMS OTP</span
+              ><span>Stripe</span><span>Zoom SDK</span>
+            </div>
+          </div>
+          <div class="skill">
+            <div class="path">architecture/</div>
+            <h3>Architecture &amp; Design</h3>
+            <div class="chips">
+              <span>Clean Architecture</span><span>SOLID</span
+              ><span>Repository Pattern</span><span>Design Patterns</span
+              ><span>CQRS</span>
+            </div>
+          </div>
+          <div class="skill">
+            <div class="path">database/</div>
+            <h3>Database</h3>
+            <div class="chips">
+              <span>SQL Server</span><span>Entity Framework Core</span>
+            </div>
+          </div>
+          <div class="skill">
+            <div class="path">frontend/</div>
+            <h3>Frontend Development</h3>
+            <div class="chips">
+              <span>HTML5</span><span>CSS3</span><span>Bootstrap</span
+              ><span>Tailwind</span><span>SASS</span><span>Angular</span>
+            </div>
+          </div>
+          <div class="skill">
+            <div class="path">tools/</div>
+            <h3>Tools</h3>
+            <div class="chips">
+              <span>Git</span><span>Visual Studio</span><span>VS Code</span
+              ><span>Swagger</span><span>Postman</span><span>Scalar</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<section id="contact" class="contact">
-  <p class="tag">// contact</p>
-  <h2>Have a backend to build?</h2>
-  <p class="sub">I'm open to .NET developer roles and collaborations on APIs and web platforms.</p>
-  <div class="cta">
-    <a class="btn primary" href="mailto:AhmedElbelkasy25@gmail.com">Email me</a>
-    <a class="btn" href="https://www.linkedin.com/in/ahmedelbelkasy25" target="_blank" rel="noopener">LinkedIn</a>
-    <a class="btn" href="https://github.com/AhmedElbelkasy25" target="_blank" rel="noopener">GitHub</a>
-    <a class="btn" href="AhmedElbelkasyCV.pdf" download>Download CV</a>
-  </div>
-</section>
-</main>
+      <section id="contact" class="contact">
+        <p class="tag">// contact</p>
+        <h2>Have a backend to build?</h2>
+        <p class="sub">
+          I'm open to .NET developer roles and collaborations on APIs and web
+          platforms.
+        </p>
+        <div class="cta">
+          <a class="btn primary" href="mailto:AhmedElbelkasy25@gmail.com"
+            >Email me</a
+          >
+          <a
+            class="btn"
+            href="https://www.linkedin.com/in/ahmedelbelkasy25"
+            target="_blank"
+            rel="noopener"
+            >LinkedIn</a
+          >
+          <a
+            class="btn"
+            href="https://github.com/AhmedElbelkasy25"
+            target="_blank"
+            rel="noopener"
+            >GitHub</a
+          >
+          <a class="btn" href="AhmedElbelkasyCV.pdf" download>Download CV</a>
+        </div>
+      </section>
+    </main>
 
-<footer><div class="wrap"><span>© <span id="y">2026</span> Ahmed Elbelkasy</span>
-<span><a href="https://github.com/AhmedElbelkasy25">github</a> · <a href="https://www.linkedin.com/in/ahmedelbelkasy25">linkedin</a></span></div></footer>
+    <footer>
+      <div class="wrap">
+        <span>© <span id="y">2026</span> Ahmed Elbelkasy</span>
+        <span
+          ><a href="https://github.com/AhmedElbelkasy25">github</a> ·
+          <a href="https://www.linkedin.com/in/ahmedelbelkasy25"
+            >linkedin</a
+          ></span
+        >
+      </div>
+    </footer>
 
-<script>
-document.getElementById('y').textContent=new Date().getFullYear();
-const rings=document.querySelectorAll('.ring');
-document.querySelectorAll('.legend li').forEach(li=>{
-  const on=()=>rings.forEach(r=>r.classList.toggle('on',r.dataset.l===li.dataset.l));
-  const off=()=>rings.forEach(r=>r.classList.remove('on'));
-  li.addEventListener('mouseenter',on);li.addEventListener('mouseleave',off);
-});
-</script>
-</body>
+    <script>
+      document.getElementById("y").textContent = new Date().getFullYear();
+      const rings = document.querySelectorAll(".ring");
+      document.querySelectorAll(".legend li").forEach((li) => {
+        const on = () =>
+          rings.forEach((r) =>
+            r.classList.toggle("on", r.dataset.l === li.dataset.l),
+          );
+        const off = () => rings.forEach((r) => r.classList.remove("on"));
+        li.addEventListener("mouseenter", on);
+        li.addEventListener("mouseleave", off);
+      });
+    </script>
+  </body>
 </html>
